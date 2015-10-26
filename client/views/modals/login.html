@@ -1,6 +1,7 @@
 <template name="login">
-  <form action="{{pathFor route='results'}}">
-    <div class="container col 12">
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Login</h4>
       <div class="row"></div>
       <div class="input-field col offset-s3 s6">
         <input id="email" type="email" class="validate">
@@ -10,12 +11,10 @@
         <input id="password" type="password" class="validate">
         <label for="password">Password</label>
       </div>
-      <div class="row"></div>
-      <div class="center-align">
-        <button class="btn waves-effect waves-light cyan" type="submit">
-          Login
-        </button>
-      </div>
     </div>
-  </form>
+    <div class="modal-footer">
+      <button class="modal-action modal-close btn waves-effect waves-light cyan" type="submit">Login</button> 
+    </div>
+  </div>
 </template>
+

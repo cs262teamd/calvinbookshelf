@@ -7,8 +7,9 @@
       </a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="{{pathFor route='home'}}">Search</a></li>
-        <li><a href="{{pathFor route='login'}}">Sell</a></li>
+        <li><a class="modal-trigger" href="#modal1">Sell</a></li>
       </ul>
     </div>
   </nav>
+  {{> modals}}
 </template>
