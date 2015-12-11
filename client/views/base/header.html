@@ -5,20 +5,21 @@
       <a href="{{pathFor route='home'}}" class="brand-logo left">
         <img class="responsive-img" src="images/Calvin Bookshelf Branding_White Text.png" style="max-height: 54px; padding: 6px; vertical-align: middle;">
       </a>
-      <a href="{{pathFor route='home'}}" data-activates="mobile-demo" class="right button-collapse">
-        <i class="material-icons">menu</i>
-      </a>
+	  <!-- Dropdown Trigger -->
+      <a class="dropdown-button right" href="#!" data-activates="dropdown1">Hi, {{currentUser.username}}</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="{{pathFor route='sell'}}">Sell Book</a></li>
         {{#if currentUser}}
-        <li><a href="#" onClick="Meteor.logout()">Logout</a></li>
-        <!-- dropdown trigger currently not working
-        <li><a class='dropdown-button btn-flat white-text' href='#' data-activates='userAccountDropdown'>Hi, {{currentUser.username}}</a></li>
-        //Dropdown Structure
-        <ul id='userAccountDropdown' class='dropdown-content'>
-          <li><a href="{{pathFor route='account'}}">My Account</a></li>
-          <li><a href="#" onClick="Meteor.logout()">Log out</a></li>
-        </ul>-->
+        <li><a href="#" onClick="Meteor.logout()">Logout</a></li>         
+		<!-- Dropdown Structure -->
+		<ul id='dropdown1' class='dropdown-content'>
+			<li><a href="{{pathFor route='sell'}}">Sell</a></li>
+			<li><a href="{{pathFor route='home'}}">Search</a></li>
+			<li><a href="{{pathFor route='faq'}}">Help</a></li>
+			<li class="divider"></li>
+			<li><a href="{{pathFor route='account'}}">My Account</a></li>
+			<li><a href="#" onClick="Meteor.logout()">Log out</a></li>
+		</ul>
         {{else}}
         <li><a href="#" name="login">Log in</a></li>
         {{/if}}
