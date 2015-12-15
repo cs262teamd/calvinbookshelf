@@ -1,10 +1,11 @@
-<!-- Website Header. Contains Buy and Sell links.  -->
+<!-- the websites header  -->
 <template name="header">
   <nav class="top-nav cyan">
+    <!-- the logo -->
     <a href="{{pathFor route='home'}}" class="brand-logo left">
       <img class="responsive-img" src="images/Calvin Bookshelf Branding_White Text.png" style="max-height: 54px; padding: 6px; vertical-align: middle;">
     </a>
-    <!-- Nav Menu -->
+    <!-- the top nav buttons -->
     <ul class="right">
       <li><a href="{{pathFor route='sell'}}" class="hide-on-med-and-down">Sell Book</a></li>
       <li><a href="{{pathFor route='faq'}}" class="hide-on-med-and-down">Help</a></li>
@@ -15,12 +16,14 @@
   {{> loginModal}}
 </template>
 
+<!-- the menu dropdown button that appears on smaller screens -->
 <template name="menuButton">
   <a href="#" class="dropdown-button" data-activates="menu">
     <i class="material-icons hide-on-large-only" style="vertical-align: middle">menu</i>
   </a>
 </template>
 
+<!-- the menu dropdown content -->
 <template name="menuOptions">
   <ul id="menu" class="dropdown-content">
     <li><a href="{{pathFor route='sell'}}">Sell</a></li>
@@ -30,11 +33,12 @@
   </ul>
 </template>
 
+<!-- shows "Sign In" if not logged in, otherwise shows "Sign Out" and "My Account" -->
 <template name="menuLogin">
   {{#if currentUser}}
     <li><a href="{{pathFor route='account'}}" class="{{hide}}">My Account</a></li>
-    <li><a href="#" onClick="Meteor.logout()" class="{{hide}}">Logout</a></li>
+    <li><a href="#" onClick="Meteor.logout()" class="{{hide}}">Sign Out</a></li>
   {{else}}
-    <li><a href="#" name="login" class="{{hide}}">Sign in</a></li>
+    <li><a href="#" name="login" class="{{hide}}">Sign In</a></li>
   {{/if}}
 </template>

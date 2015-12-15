@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<!--a template that replaces ldapLogin from tdamsma:meteor-accounts-ldap package with nicer UI-->
+<!-- a nicer looking ldapLogin template -->
 <template name="myLdapLogin">
   {{#if currentUser}}
     <div class="welcome">
@@ -20,7 +20,7 @@
       <div class="modal-content">
         <h3 class="grey-text text-darken-4 center-align">Login</h3>
         <form id="loginForm" class="col s12">
-          <!--input names must be ldap and password respectively for tdamsma:meteor-accounts-ldap package-->
+          <!-- input names must be ldap and password respectively -->
           <div row>
             <div class="input-field col s8 offset-s2">
               <i class="material-icons prefix">account_circle</i>
@@ -36,8 +36,9 @@
         </form>
         <h6 class="grey-text text-lighten-1 center-align">*Don't worry, we don't save your password</h6>
       </div>
+      <!-- the buttons on the bottom of the footer -->
       <div class="modal-footer">
-        <button class="btn-flat transparent waves-effect waves-red modal-close">Cancel</button>
+        <button class="btn-flat transparent waves-effect waves-red modal-action modal-close">Cancel</button>
         <button class="btn-flat transparent waves-effect waves-green" name="login" type="submit" form="loginForm">Login</button>
       </div>
       {{#if failedLogin}}

@@ -1,21 +1,17 @@
-<!-- stub for a page that displays a user's account information  -->
+<!-- stub for a page that displays a user's account information -->
 <template name="account">
   <div class="container">
     <div class="row">
+      <!-- displays all of the books that the user is selling -->
       <h3 class="header center-align">My Books:</h3>
-      {{#if currentUser}}
-        {{#if Template.subscriptionsReady}}
-          <div class="row">
-            {{#each books}}
-              <!--cards until we implement new display method-->
-              <div class="col s12 m6 l4">{{> card}}</div>
-            {{/each}}
-          </div>
-        {{else}}
-          {{> spinner}}
-        {{/if}}
+      {{#if Template.subscriptionsReady}}
+        <div class="row">
+          {{#each myBooks}}
+            <div class="col s12 m6 l4">{{> card}}</div>
+          {{/each}}
+        </div>
       {{else}}
-        <h5 class="center align">Oh no! You're not logged in. Please log in to see your books.</h5>
+        {{> spinner}}
       {{/if}}
     </div>
   </div>

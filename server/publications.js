@@ -1,9 +1,4 @@
-/* This server js file returns the elements of our book collection
- * It also adds three dumby books to our collection if it is empty
- *
- * To do: filter search results based on search parameters
- *        sort results by price, name, ect.
- */
+/* this file only runs on the server */
 
 // publishes the books collection
 Meteor.publish('books', function() {
@@ -41,7 +36,7 @@ Meteor.methods({
     }
 });
 
-// creates the admin account if it's not already created
+// creates the dev account if it's not already created
 if (Meteor.users.find({username: "dev"}).count() === 0) {
     Accounts.createUser({
         username: "dev",

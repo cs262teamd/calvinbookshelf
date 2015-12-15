@@ -1,5 +1,8 @@
-// binds to the loginModal template when its rendered
+///////////////////////////// loginModal template /////////////////////////////
+
+// onRendered hook bound to the loginModal template
 Template.loginModal.onRendered(function() {
+    // initializes elements with the modal-trigger class
     $('.modal-trigger').leanModal({
         dismissible: true,
         opacity: .5,
@@ -8,44 +11,45 @@ Template.loginModal.onRendered(function() {
     });
 });
 
-// myLdapLogin template inherits from ldapLogin and loginModal
-Template.myLdapLogin.inheritsHelpersFrom("ldapLogin");
-Template.myLdapLogin.inheritsEventsFrom("loginModal");
-Template.myLdapLogin.inheritsHooksFrom("ldapLogin");
-
+// event handler bound to the loginModal class
 Template.loginModal.events({
-    'click button[name="login"]': function(e, tpl) {
-        e.preventDefault();
-        initLogin(e, tpl);
+    // when the login button is clicked
+    'click button[name="login"]': function(event, template) {
+        event.preventDefault();
+        initLogin(event, template);
     },
-    'keyup input': function(e, tpl) {
-        e.preventDefault();
-        if (e.keyCode == 13) { // enter key is pressed
-            firstAttempt = true;
-            initLogin(e, tpl);
-        }
+    // when the enter key is pressed
+    'keyup input': function(event, template) {
+        event.preventDefault();
+        if (event.keyCode === 13)
+            initLogin(event, template);
     },
-    'click button[name="logout"]': function(e) {
-        firstAttempt = true;
+    // when the logout button is clicked
+    'click button[name="logout"]': function(event) {
         Meteor.logout();
     }
 });
 
-// initiate login process
-initLogin = function(e, tpl) {
-    // find username and password from input fields
-    var username = $(tpl.find('input[name="ldap"]')).val();
-    var password = $(tpl.find('input[name="password"]')).val();
+// myLdapLogin template inherits from ldapLogin and loginModal
+Template.myLdapLogin.inheritsHelpersFrom("ldapLogin");
+Template.myLdapLogin.inheritsEventsFrom("loginModal");
 
+// initiates the login process
+initLogin = function(event, template) {
+    // find username and password from input fields
+    var user = $(template.find('input[name="ldap"]')).val();
+    var pass = $(template.find('input[name="password"]')).val();
     // if trying to login as dev account
-    if (username === "dev")
-        var result = Meteor.loginWithPassword(username, password, function(error) {
+    if (user === "dev") {
+        var result = Meteor.loginWithPassword(user, pass, function(error) {
             return error ? false : true;
         });
+    }
     // otherwise, use LDAP authentication
-    else
-        var result = Meteor.loginWithLdap(username, password, function() {
+    else {
+        var result = Meteor.loginWithLdap(user, pass, function() {
             return Meteor.userId() ? true : false;
         });
+    }
     return result;
 }
